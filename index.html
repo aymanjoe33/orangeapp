@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orange Sales - نظام المبيعات</title>
+    <title>Orange Sales - Demo</title>
     <style>
         * {
             margin: 0;
@@ -34,8 +34,14 @@
         h1 {
             color: #ff6b35;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-size: 28px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
         }
 
         .form-group {
@@ -45,11 +51,10 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
             font-weight: 600;
         }
 
-        input, select {
+        input {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
@@ -63,220 +68,133 @@
             background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
-        .btn-secondary {
+        .btn-dark {
             background: #333;
         }
 
         .hidden {
-            display: none !important;
+            display: none;
         }
 
-        .success {
+        .welcome {
             background: #28a745;
             color: white;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
             margin-bottom: 20px;
-        }
-
-        .error {
-            background: #dc3545;
-            color: white;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Signup Screen -->
-        <div id="signupScreen" class="card">
-            <h1>🔥 Orange Sales</h1>
-            <h2 style="color: #666; text-align: center; margin-bottom: 30px;">تسجيل حساب جديد</h2>
-            
-            <form id="signupForm">
-                <div class="form-group">
-                    <label>الاسم الكامل</label>
-                    <input type="text" id="signupName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>الكود الوظيفي</label>
-                    <input type="text" id="signupEmpId" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>رقم الهاتف</label>
-                    <input type="tel" id="signupPhone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>كلمة المرور</label>
-                    <input type="password" id="signupPassword" required minlength="4">
-                </div>
-                
-                <button type="submit" class="btn">تسجيل الحساب ✓</button>
-                <button type="button" class="btn btn-secondary" onclick="showLogin()">عندك حساب؟ سجل دخول</button>
-            </form>
+
+<div class="container">
+
+    <!-- Signup -->
+    <div id="signup" class="card">
+        <h1>🍊 Orange Sales</h1>
+        <h2>تسجيل حساب (Demo)</h2>
+
+        <div class="form-group">
+            <label>الاسم</label>
+            <input id="name">
         </div>
 
-        <!-- Login Screen -->
-        <div id="loginScreen" class="card hidden">
-            <h1>🔥 Orange Sales</h1>
-            <h2 style="color: #666; text-align: center; margin-bottom: 30px;">تسجيل الدخول</h2>
-            
-            <div id="loginError" class="error"></div>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label>الكود الوظيفي</label>
-                    <input type="text" id="loginEmpId" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>كلمة المرور</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                
-                <button type="submit" class="btn">دخول 🚀</button>
-                <button type="button" class="btn btn-secondary" onclick="showSignup()">تسجيل حساب جديد</button>
-            </form>
+        <div class="form-group">
+            <label>الكود الوظيفي</label>
+            <input id="emp">
         </div>
 
-        <!-- Main App -->
-        <div id="mainApp" class="hidden">
-            <div class="card">
-                <div class="success">
-                    مرحباً <strong id="userName"></strong> 👋
-                </div>
-                
-                <h2 style="color: #ff6b35; margin-bottom: 20px;">التطبيق شغال! 🎉</h2>
-                
-                <p style="margin-bottom: 15px;">الكود الوظيفي: <strong id="userEmpId"></strong></p>
-                <p style="margin-bottom: 15px;">الهاتف: <strong id="userPhone"></strong></p>
-                
-                <button class="btn" onclick="testAlert()">اختبر التطبيق 🧪</button>
-                <button class="btn btn-secondary" onclick="logout()">تسجيل خروج</button>
+        <button class="btn" onclick="signup()">تسجيل</button>
+        <button class="btn btn-dark" onclick="showLogin()">عندك حساب؟ دخول</button>
+    </div>
+
+    <!-- Login -->
+    <div id="login" class="card hidden">
+        <h1>🍊 Orange Sales</h1>
+        <h2>تسجيل الدخول</h2>
+
+        <div class="form-group">
+            <label>الكود الوظيفي</label>
+            <input id="loginEmp">
+        </div>
+
+        <button class="btn" onclick="login()">دخول</button>
+        <button class="btn btn-dark" onclick="showSignup()">تسجيل جديد</button>
+    </div>
+
+    <!-- App -->
+    <div id="app" class="hidden">
+        <div class="card">
+            <div class="welcome">
+                مرحبًا <span id="user"></span> 👋
             </div>
+
+            <button class="btn" onclick="openPage('المبيعات')">💰 المبيعات</button>
+            <button class="btn" onclick="openPage('الموظفين')">👥 الموظفين</button>
+            <button class="btn" onclick="openPage('التقارير')">📊 التقارير</button>
+            <button class="btn" onclick="openPage('الإعدادات')">⚙️ الإعدادات</button>
+            <button class="btn btn-dark" onclick="logout()">تسجيل خروج</button>
         </div>
     </div>
 
-    <script>
-        console.log('✅ التطبيق بدأ!');
-        
-        let currentUser = null;
+</div>
 
-        // Check if already logged in
-        const savedUser = localStorage.getItem('currentUser');
-        if (savedUser) {
-            currentUser = JSON.parse(savedUser);
-            showMainApp();
-        }
+<script>
+let currentUser = localStorage.getItem("demoUser");
 
-        // Signup
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            console.log('📝 تسجيل حساب...');
-            
-            const name = document.getElementById('signupName').value;
-            const empId = document.getElementById('signupEmpId').value;
-            const phone = document.getElementById('signupPhone').value;
-            const password = document.getElementById('signupPassword').value;
-            
-            // Get existing users
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            
-            // Check if user exists
-            if (users.find(u => u.empId === empId)) {
-                alert('الكود الوظيفي مسجل من قبل!');
-                return;
-            }
-            
-            // Add new user
-            const newUser = {
-                id: Date.now().toString(),
-                name: name,
-                empId: empId,
-                phone: phone,
-                password: password
-            };
-            
-            users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
-            
-            // Auto login
-            currentUser = newUser;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            alert('تم التسجيل بنجاح! 🎉');
-            showMainApp();
-        });
+if (currentUser) {
+    document.getElementById("signup").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    document.getElementById("user").textContent = currentUser;
+}
 
-        // Login
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            console.log('🔐 تسجيل دخول...');
-            
-            const empId = document.getElementById('loginEmpId').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.empId === empId && u.password === password);
-            
-            if (!user) {
-                const errorDiv = document.getElementById('loginError');
-                errorDiv.textContent = 'الكود الوظيفي أو كلمة المرور غير صحيحة!';
-                errorDiv.style.display = 'block';
-                return;
-            }
-            
-            currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            showMainApp();
-        });
+function signup() {
+    const name = document.getElementById("name").value;
+    if (!name) {
+        alert("اكتب الاسم");
+        return;
+    }
+    localStorage.setItem("demoUser", name);
+    location.reload();
+}
 
-        function showSignup() {
-            document.getElementById('signupScreen').classList.remove('hidden');
-            document.getElementById('loginScreen').classList.add('hidden');
-        }
+function login() {
+    const emp = document.getElementById("loginEmp").value;
+    if (!emp) {
+        alert("اكتب الكود");
+        return;
+    }
+    localStorage.setItem("demoUser", emp);
+    location.reload();
+}
 
-        function showLogin() {
-            document.getElementById('signupScreen').classList.add('hidden');
-            document.getElementById('loginScreen').classList.remove('hidden');
-        }
+function logout() {
+    localStorage.removeItem("demoUser");
+    location.reload();
+}
 
-        function showMainApp() {
-            document.getElementById('signupScreen').classList.add('hidden');
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('mainApp').classList.remove('hidden');
-            
-            document.getElementById('userName').textContent = currentUser.name;
-            document.getElementById('userEmpId').textContent = currentUser.empId;
-            document.getElementById('userPhone').textContent = currentUser.phone;
-        }
+function showLogin() {
+    document.getElementById("signup").classList.add("hidden");
+    document.getElementById("login").classList.remove("hidden");
+}
 
-        function logout() {
-            localStorage.removeItem('currentUser');
-            currentUser = null;
-            location.reload();
-        }
+function showSignup() {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("signup").classList.remove("hidden");
+}
 
-        function testAlert() {
-            alert('التطبيق شغال 100%! ✅\n\nيمكنك الآن البدء في إضافة المميزات الأخرى.');
-        }
+function openPage(name) {
+    alert("📱 " + name + "\n\nنسخة تجريبية Demo");
+}
+</script>
 
-        console.log('✅ السكريبت اتحمل بنجاح!');
-    </script>
 </body>
 </html>
